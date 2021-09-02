@@ -19,8 +19,18 @@ public class ControllerCalculator {
 			throw new UnsuportedMathOperationException("Please with value numeric!");
 			
 		}
-		
 		return sum;
+	}
+	
+	@RequestMapping("/min/{numberOne}/{numberTwo}")
+	public Double min(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo) {
+		Double min;
+		if(isNumeric(numberOne) && isNumeric(numberTwo)) {
+			min = Double.parseDouble(numberOne) - Double.parseDouble(numberTwo);
+		}else {
+			throw new UnsuportedMathOperationException("Please with value numeric");
+		}
+		return min;
 	}
 
 	private boolean isNumeric(String strNumber) {
