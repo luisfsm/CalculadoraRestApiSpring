@@ -1,4 +1,7 @@
 package br.com.calculadora.RestWithspringcalculadora.controller;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,6 +34,33 @@ public class ControllerCalculator {
 			throw new UnsuportedMathOperationException("Please with value numeric");
 		}
 		return min;
+	}
+	
+	@RequestMapping("/div/{numberOne}/{numberTwo}")
+	public String div(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo) {
+		Double div;
+		
+		if(isNumeric(numberOne) && isNumeric(numberTwo)) {
+			div = Double.parseDouble(numberOne)/Double.parseDouble(numberTwo);
+		}else {
+			throw new UnsuportedMathOperationException("Please with value numeric");
+		}
+		NumberFormat number = new DecimalFormat("#0.00");
+		return number.format(div);
+		
+	}
+	
+	@RequestMapping("/multi/{numberOne}/{numberTwo}")
+	public Double multi(@PathVariable("numberOne") String numberOne, @PathVariable("numberTwo") String numberTwo) {
+			Double multi;
+			
+			if(isNumeric(numberOne) && isNumeric(numberTwo)) {
+				multi = Double.parseDouble(numberOne)*Double.parseDouble(numberTwo);
+			}else {
+				throw new UnsuportedMathOperationException("Please with value numeric");
+			}
+			
+			return multi;
 	}
 
 	private boolean isNumeric(String strNumber) {
