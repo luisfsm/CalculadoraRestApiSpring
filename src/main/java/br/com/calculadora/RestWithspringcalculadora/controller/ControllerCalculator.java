@@ -3,6 +3,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.calculadora.RestWithspringcalculadora.Exception.UnsuportedMathOperationException;
+
 @RestController
 public class ControllerCalculator {
 
@@ -14,7 +16,7 @@ public class ControllerCalculator {
 			System.out.println(numberTwo);
 			 sum = Double.parseDouble(numberOne)+Double.parseDouble(numberOne);
 		}else {
-			throw new Exception();
+			throw new UnsuportedMathOperationException("Please with value numeric!");
 			
 		}
 		
